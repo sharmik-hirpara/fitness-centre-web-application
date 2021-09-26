@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Enquiry | Stay Fit 24-hour Fitness Club</title>
+	<link href="styles/style.css" rel="stylesheet" />
+	<meta charset="utf-8" />
+	<meta name="description" content="Description" />
+	<meta name="keywords" content="Fitness Club, Gymnastic, Swimming, Yoga, Description, Enquiry form" />
+	<meta name="author" content="Sharmik" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+</head>
+
+<body>
+	<header>
+		<h1><a href="index.html"><img src="images/fitness_logo.png" alt="Stay Fit Logo"></img></a> Stay Fit <em>24-hour Fitness Club</em></h1>
+		<h5>COS60004 - Creating Web Applications</h5><hr />
+	</header>
+
+	<nav><h4>
+		<a href="index.html">Home</a> |
+		<a href="product.html">Description</a> |
+		<a href="enquire.html">Enquire</a> |
+		<a href="about.html">About</a> |
+		<a href="enhancement.html">Enhancement</a>
+	</h4></nav>
+	
+	<h1>Stay Fit <em>24-hour Fitness Club</em></h1>
+	<h2>Enquire form</h2>
+
+	<form method="post" action="http://mercury.swin.edu.au/it000000/formtest.php">
+		<fieldset>
+			<legend>Personal datails</legend>
+			<label for="first_name">First name: </label>
+			<input type="text" name="first_name" id="first_name" maxlength="25" size="25" pattern="[a-zA-Z ]{1,25}" required="required"></input>
+			<label for="last_name">Last name: </label>
+			<input type="text" name="last_name" id="last_name" maxlength="25" size="25" pattern="[a-zA-Z ]{1,25}" required="required"></input>
+			<p>
+				<label for="email_id">Email address: </label>
+				<input type="email" name="email_id" id="email_id" size="40" required="required"></input>
+			</p><br />
+			<fieldset>
+				<legend>Recidence details</legend>
+				<p><label for="street_name">Street name: </label>
+				<input type="text" name="street_name" id="street_name" maxlength="40" size="40" pattern="[a-zA-Z ]{1,40}" required="required"></input></p>
+				<p><label for="suburb">Suburb: </label>
+				<input type="text" name="suburb" id="suburb" maxlength="20" size="25" pattern="[a-zA-Z ]{1,20}" required="required"></input></p>
+				<p><label for="state">State: </label>
+				<select name="State" id="state" required="required">
+					<option value="" >State name</option>
+					<option value="VIC">VIC</option>
+					<option value="NSW">NSW</option>
+					<option value="QLD">QLD</option>
+					<option value="NT">NT</option>
+					<option value="WA">WA</option>
+					<option value="SA">SA</option>
+					<option value="TAS">TAS</option>
+					<option value="ACT">ACT</option>
+				</select>
+				<label for="postcode">Postcode: </label>
+				<input type="text" name="postcode" id="postcode" maxlength="4" size="4" pattern="\d{4}" required="required"></input>
+				</p>
+			</fieldset>
+			<p><label for="phone_number">Phone number</label>
+			<input type="tel" name="phone_number" id="phone_number" maxlength="10" size="14" pattern="\d{10}" placeholder="(0)XXX-XXX-XXX" required="required"></input>
+			</p>
+			<label>Preferred contact: </label>
+				<input type="radio" name="preferred_contact" id="post" value="post" required="required"></input>
+				<label for="post">Post</label>
+				<input type="radio" name="preferred_contact" id="email" value="email" required="required"></input>
+				<label for="email">Email</label>
+				<input type="radio" name="preferred_contact" id="phone" value="phone" required="required"></input>
+				<label for="phone">Phone</label>
+		</fieldset>
+		<fieldset>
+			<legend>Product enquiry details</legend>
+			<p><label for="category">Category: </label>
+				<select name="Category" id="category" required="required">
+					<option value="" >Select category</option>
+					<option value="gymnastics">Gymnastics</option>
+					<option value="swimming">Swimming</option>
+					<option value="yoga">Yoga</option>
+				</select></p>
+			<label>Product features: </label>
+			<p>
+				<input type="checkbox" name="product_features[]" id="group_activity" required="required"></input>
+				<label for="group_activity">Group acivity</label>
+				<input type="checkbox" name="product_features[]" id="personal_training" required="required"></input>
+				<label for="personal_training">Personal training</label>
+				<input type="checkbox" name="product_features[]" id="fee_details" required="required"></input>
+				<label for="fee_details">Fee details</label>
+			</p>
+			<label for="comments">Comments: </label>
+			<p><textarea id="comments" name="comments" rows="4" cols="40"></textarea></p>
+		</fieldset>
+
+		<input type= "submit" value="Submit"/>
+		<input type="reset" value="Reset fields"></input>
+	</form><br /><br />
+
+	<footer><hr />
+		&#169; <a href="http://www.swinburne.edu.au"><u>Swinburne University of Technology</u>.</a>&#160;&#160;&#160;&#160; Mark up by: <a href="mailto:101980352@swin.edu.au"><u>Sharmik</u></a>
+	</footer>
+</body>
+</html>

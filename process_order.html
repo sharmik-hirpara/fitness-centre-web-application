@@ -1,0 +1,541 @@
+<?php
+	session_start();
+?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="description" content="Enquiry Details Confirmation" />
+	<meta name="keywords" content="Fitness Club, Gymnastic, Swimming, Yoga, Description, Enquiry form confirmation" />
+	<meta name="author" content="Sharmik" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Enquiry Confirmation | Stay Fit 24-hour Fitness Club</title>
+	<link href="styles/style.css" rel="stylesheet" />
+	<script src="scripts/part2.js"></script>
+</head>
+
+<body>
+<?php
+	include "includes/header.inc";
+	
+	echo "data from enquire page:\n"; 
+	echo $_SESSION["first_name"];
+	echo $_SESSION["last_name"];
+	echo $_SESSION["email_id"];
+	echo $_SESSION["street_name"];
+	echo $_SESSION["suburb"];
+	echo $_SESSION["state"];
+	echo $_SESSION["postcode"];
+	echo $_SESSION["b_street_name"];
+	echo $_SESSION["b_suburb"];
+	echo $_SESSION["b_state"];
+	echo $_SESSION["b_postcode"];
+	echo $_SESSION["phone_number"];
+	echo $_SESSION["preferred_contact"];
+	echo $_SESSION["category"];
+	echo $_SESSION["product_features"];
+	echo $_SESSION["no_of_members"];
+
+
+	$errMsg = "";
+	if(isset($_POST["first_name"]) && isset($_POST["last_name"]))
+	{
+		$inputFirstName = $_POST["first_name"];
+		$inputFirstName = sanitise_input($inputFirstName);
+		$inputLastName = $_POST["last_name"];
+		$inputLastName = sanitise_input($inputLastName);
+		if($inputFirstName != NULL)
+		{
+			if(!preg_match("/^[A-Za-z\\- \']{1,25}$/", $inputFirstName))
+			{
+				$errMsg .= "Invalid first name\n";
+			}	
+		}
+		else
+		{
+			$errMsg .= "<p> Error: Please enter the first in the <a href=\"enquire.php\"> form</a></p>\n";
+		}
+
+		if($inputLastName != NULL)
+		{
+			if(!preg_match("/^[A-Za-z\\- \']{1,25}$/", $inputLastName))
+			{
+				$errMsg .= "Invalid last name\n";
+			}	
+		}
+		else
+		{
+			$errMsg .= "<p> Error: Please enter the last name in the <a href=\"enquire.php\"> form</a></p>\n";
+		}
+	}
+
+	if(isset($_POST["email_id"]))
+	{
+		$email = $_POST["email_id"];
+		if($email != NULL)
+		{
+			if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
+			{
+		  		$errMsg .= "<p> Error: Please enter the valid email address in the <a href=\"enquire.php\"> form</a></p>\n"; 
+			}
+		}
+		else
+		{
+			$errMsg .= "<p> Error: Please enter the email address in the <a href=\"enquire.php\"> form</a></p>\n"; 
+		}
+	}
+
+	if(isset($_POST["street_name"]))
+	{
+		$streetName = $_POST["street_name"];
+		$streetName = sanitise_input($streetName);
+	}
+
+	if(isset($_POST["suburb"]))
+	{
+		$suburb = $_POST["suburb"];
+		$suburb = sanitise_input($suburb);
+	}
+
+	if(isset($_POST["state"]))
+	{
+		$state = $_POST["state"];
+		$state = sanitise_input($state);
+	}
+
+	if(isset($_POST["postcode"]))
+	{
+		$postcode = $_POST["postcode"];
+		$postcode = sanitise_input($postcode);
+	}
+
+	$errMsg .= validateAddress($streetName, $suburb, $state, $postcode);
+
+	if(isset($_POST["b_street_name"]))
+	{
+		$bstreetName = $_POST["b_street_name"];
+		$bstreetName = sanitise_input($bstreetName);
+	}
+
+	if(isset($_POST["b_suburb"]))
+	{
+		$bsuburb = $_POST["b_suburb"];
+		$bsuburb = sanitise_input($bsuburb);
+	}
+
+	if(isset($_POST["b_state"]))
+	{
+		$bstate = $_POST["b_state"];
+		$bstate = sanitise_input($bstate);
+	}
+
+	if(isset($_POST["b_postcode"]))
+	{
+		$b_postcode = $_POST["b_postcode"];
+		$b_postcode = sanitise_input($b_postcode);
+	}
+
+	if($bstreetName != "Not applicable")
+	{
+		$errMsg .= validateAddress($bstreetName, $bsuburb, $bstate, $b_postcode);
+	}
+
+	if(isset($_POST["phone_number"]))
+	{
+		$phoneNumber = $_POST["phone_number"];
+		$phoneNumber = sanitise_input($phoneNumber);
+		if($phoneNumber != NULL)
+		{
+			if(!preg_match("/^[0-9]{10}$/", $phoneNumber))
+			{
+				$errMsg .= "Invalid phone number";
+			}
+		}
+		else
+		{
+			$errMsg .= "<p> Error: Please enter the phone number in the <a href=\"enquire.php\"> form</a></p>";
+		}
+	}
+
+	if(isset($_POST["preferred_contact"]))
+	{
+		$preferredContact = $_POST["preferred_contact"];
+		$preferredContact = sanitise_input($preferredContact);
+	}
+	else
+	{
+		$errMsg .= "<p> Error: Please select the preferred contact type in the <a href=\"enquire.php\"> form</a></p>";
+		$preferredContact = "Unknown species";
+	}
+
+	if(isset($_POST["category"]))
+	{
+		$category = $_POST["category"];
+		$category = sanitise_input($category);
+		if($category == "")
+		{
+			$errMsg .= "<p> Error: Please select the category in the <a href=\"enquire.php\"> form</a></p>";
+		}
+	}
+
+	if(isset($_POST["product_features"]))
+		{
+			$productFeature = $_POST["product_features"];
+			$productFeature = sanitise_input($productFeature);
+		}
+
+/*
+	if(!empty($_POST["product_features"]))
+	{
+		if(is_array($_POST["product_features"]))
+		{
+			$productFeature = $_POST["product_features"];
+			// foreach ($productFeature as $checked) 
+			// {
+			// 	echo "$checked </br>";
+			// }
+		}
+		else
+		{
+			$errMsg .= "<p> Error: Please select any one product feature in the <a href=\"enquire.php\"> form</a></p>";
+		}
+	}
+*/
+	if(isset($_POST["member_count"]))
+	{
+		$partySize = $_POST["member_count"];
+		$partySize = sanitise_input($partySize);
+		if($partySize != NULL)
+		{
+			if(!preg_match("/^[0-9]{1,2}$/", $partySize))
+			{
+				$errMsg .= "Invalid party size";
+			}
+		}
+		else
+		{
+			$errMsg .= "<p> Error: Please enter the total number of members in the <a href=\"enquire.php\"> form</a></p>";
+			$partySize = "Unknown party size";
+		}
+	}
+
+	if(isset($_POST["payment_type"]))
+	{
+		$paymentType = $_POST["payment_type"];
+		$paymentType = sanitise_input($paymentType);
+		echo $paymentType;
+	}
+	else
+	{
+		$errMsg .= "<p> Error: Please select the payment type in the <a href=\"payment.php\"> form</a></p>";
+		$paymentType = "Unknown payment type";
+	}
+
+	if(isset($_POST["card_number"]) && isset($_POST["cvv_no"]))
+	{
+		$cardNumber = $_POST["card_number"];
+		$cardNumber = sanitise_input($cardNumber);
+		$cvvNumber = $_POST["cvv_no"];
+		$cvvNumber = sanitise_input($cvvNumber);
+		if($cardNumber != NULL)
+		{
+			if($paymentType == "visa")
+			{
+				if((!preg_match("/^[0-9]{16}$/", $cardNumber)) || digitFromRightSide($cardNumber, 16) != 4)
+				{
+					$errMsg .= "Invalid Visa card number";
+				}
+				if(!preg_match("/^[0-9]{3}$/", $cvvNumber))
+				{
+					$errMsg .= "Invalid cvv number";
+				}
+			}
+			else if($paymentType == "mastercard")
+			{
+				if((!preg_match("/^[0-9]{16}$/", $cardNumber)) || digitFromRightSide($cardNumber, 16) != 5)
+				{
+					$errMsg .= "Invalid Mastercard number";
+				}
+				else if(digitFromRightSide($cardNumber, 15) < 1 || digitFromRightSide($cardNumber, 15) > 5)
+				{
+					$errMsg .= "Invalid Mastercard number";
+				}
+				if(!preg_match("/^[0-9]{3}$/", $cvvNumber))
+				{
+					$errMsg .= "Invalid cvv number";
+				}
+			}
+			else if($paymentType == "americanexpress")
+			{
+				if((!preg_match("/^[0-9]{15}$/", $cardNumber)) || digitFromRightSide($cardNumber, 15) != 3)
+				{
+					$errMsg .= "Invalid American express card number(3)";
+				}
+				else if(digitFromRightSide($cardNumber, 14) != 4 && digitFromRightSide($cardNumber, 14) != 7)
+				{
+					$errMsg .= "Invalid American express card number(47)";
+				}
+				if(!preg_match("/^[0-9]{4}$/", $cvvNumber))
+				{
+					$errMsg .= "Invalid cvv number";
+				}
+			}
+		}
+		else
+		{
+			$errMsg .= "<p> Error: Please enter the card detials in the <a href=\"payment.php\"> form</a></p>";
+		}
+	}
+
+	if(isset($_POST["expiry_month"]) && isset($_POST["expiry_year"]))
+	{
+		$expiryMonth = $_POST["expiry_month"];
+		$expiryMonth = sanitise_input($expiryMonth);
+		$expiryYear = $_POST["expiry_year"];
+		$expiryYear = sanitise_input($expiryYear);
+		$month = date("m");
+		$year = date("y");
+
+		if($expiryYear != NULL)
+		{
+			if((!preg_match("/^[0-9]{2}$/", $expiryYear)) || $expiryYear < $year)
+			{
+				$errMsg .= "Invalid year";
+			}
+		}
+		else
+		{
+			$errMsg .= "<p> Error: Please enter the expiry date of card in the <a href=\"enquire.php\"> form</a></p>";
+			$expiryMonth = "Unknown month";
+		}
+
+		if($expiryMonth != NULL)
+		{
+			if((!preg_match("/^[0-9]{1,2}$/", $expiryMonth)) || ($expiryMonth < $month && $year == $expiryYear))
+			{
+				$errMsg .= "Invalid month";
+			}
+		}
+		else
+		{
+			$errMsg .= "<p> Error: Please enter the expiry date of card in the <a href=\"enquire.php\"> form</a></p>";
+			$expiryMonth = "Unknown year";
+		}
+	}
+
+	if(isset($_POST["cardholder_name"]))
+	{
+		$cardHolderName = $_POST["cardholder_name"];
+		$cardHolderName = sanitise_input($cardHolderName);
+		if($cardHolderName != NULL)
+		{
+			if(!preg_match("/^[A-Za-z\\- \']{1,40}$/", $cardHolderName))
+			{
+				$errMsg .= "Invalid card holder name\n";
+			}	
+		}
+		else
+		{
+			$errMsg .= "<p> Error: Please enter the card holder's name in the <a href=\"enquire.php\"> form</a></p>\n";
+		}
+	}
+
+	if($errMsg != "")
+	{
+		echo "<p>$errMsg</p>";
+		//header("location: enquire.php");
+	}
+	else
+	{
+		echo "<p> Create Table here</p>";
+	}
+ 
+	include 'includes/footer.inc';
+
+	function digitFromRightSide($number, $position)
+	{
+		return floor(($number / pow(10, $position - 1)) % 10);
+	}
+
+	function sanitise_input($data)
+	{
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	}
+
+	function validateAddress($streetName, $suburb, $state, $postcode)
+	{
+		$message = "";
+		if($streetName != NULL)
+		{
+			if(!preg_match("/^[A-Za-z\\- \']+$/", $streetName))
+			{
+				$message .= "Invalid street name\n";
+			}	
+		}
+		else
+		{
+			$message .= "<p> Error: Please enter the street name in the <a href=\"payment.php\"> form</a></p>\n";
+		}
+
+		if($suburb != NULL)
+		{
+			if(!preg_match("/^[A-Za-z\\- \']+$/", $suburb))
+			{
+				$message .= "Invalid suburb name\n";
+			}	
+		}
+		else
+		{
+			$message .= "<p> Error: Please enter the suburb name in the <a href=\"payment.php\"> form</a></p>\n";
+		}
+
+
+		if($state == "")
+		{
+			$message .= "<p> Error: Please select the state in the <a href=\"payment.php\"> form</a></p>";
+		}
+
+		if($postcode != NULL)
+		{
+			if(!preg_match("/^[0-9]{4}$/", $postcode))
+			{
+				$message .= "Invalid postcode";
+			}
+
+			switch($state)
+			{
+				case "VIC": if(digitFromRightSide($postcode, 4) != 3 && digitFromRightSide($postcode, 4) != 8)
+							{
+								$message .= "Enter valid post code for " . $state;
+							}
+							break;
+				case "NSW": if(digitFromRightSide($postcode, 4) != 1 && digitFromRightSide($postcode, 4) != 2)
+							{
+								$message .= "Enter valid post code for " . $state;
+							}
+							break;
+				case "QLD": if(digitFromRightSide($postcode, 4) != 4 && digitFromRightSide($postcode, 4) != 9)
+							{
+								$message .= "Enter valid post code for " . $state;
+							}
+							break;
+				case "NT":  if(digitFromRightSide($postcode, 4) != 0)
+							{
+								$message .= "Enter valid post code for " . $state;
+							}
+							break;
+				case "WA":  if(digitFromRightSide($postcode, 4) != 6)
+							{
+								$message .= "Enter valid post code for " . $state;
+							}
+							break;
+				case "SA":  if(digitFromRightSide($postcode, 4) != 5)
+							{
+								$message .= "Enter valid post code for " . $state;
+							}
+							break;
+				case "TAS": if(digitFromRightSide($postcode, 4) != 7)
+							{
+								$message .= "Enter valid post code for " . $state;
+							}
+							break;
+				case "ACT": if(digitFromRightSide($postcode, 4) != 0)
+							{
+								$message .= "Enter valid post code for " . $state;
+							}
+							break;
+			}
+		}
+		else
+		{
+			$message .= "<p> Error: Please enter an postcode in the <a href=\"payment.php\"> form</a></p>";
+			$postcode = "Unknown postcode";
+		}
+		return $message;
+	}
+?>
+
+	<form id="payment" method="post" novalidate="novalidate" action="#">
+		
+		<input type="hidden" name="first_name" id="first_name" />
+		<input type="hidden" name="last_name" id="last_name" />
+		<input type="hidden" name="email_id" id="email_id" />
+		<input type="hidden" name="street_name" id="street_name" />
+		<input type="hidden" name="suburb" id="suburb" />
+		<input type="hidden" name="state" id="state" />
+		<input type="hidden" name="postcode" id="postcode" />
+		<input type="hidden" name="b_street_name" id="b_street_name" />
+		<input type="hidden" name="b_suburb" id="b_suburb" />
+		<input type="hidden" name="b_state" id="b_state" />
+		<input type="hidden" name="b_postcode" id="b_postcode" />		
+		<input type="hidden" name="phone_number" id="phone_number" />
+		<input type="hidden" name="preferred_contact" id="preferred_contact" />
+		<input type="hidden" name="category" id="category" />
+		<input type="hidden" name="product_features" id="product_features" />
+		<input type="hidden" name="member_count" id="member_count" />
+
+		<fieldset>
+			<legend>Your Details</legend>
+			<p>Your Name: <strong><span id="confirm_name"></span></strong></p>
+			<p>Address: <strong><span id="confirm_address"></span></strong></p>
+			<p>Billing Address: <strong><span id="confirm_b_address"></span></strong></p>
+			<p>Phone Number: <strong><span id="confirm_phone_number"></span></strong></p>
+			<p>Email ID: <strong><span id="confirm_email_id"></span></strong></p>			
+			<p>Preferred Contact Type: <strong><span id="confirm_preferred_contact"></span></strong></p>
+		</fieldset>
+		<p></p>
+		<fieldset>
+			<legend>Product Details</legend>
+			<p>Category: <strong><span id="confirm_category"></span></strong></p>
+			<p>Feature: <strong><span id="confirm_feature"></span></strong></p>
+			<p>Total Members: <strong><span id="confirm_member_count"></span></strong></p>
+			<p>Total Cost: $ <strong><span id="confirm_cost"></span></strong>  per hour</p>
+		</fieldset>
+		<p></p>
+		<fieldset>
+			<legend>Payment details</legend>
+			<input type="radio" name="payment_type" id="visa" value="visa" required="required">
+			<label for="visa">Visa</label>
+			<input type="radio" name="payment_type" id="mastercard" value="mastercard" required="required">
+			<label for="mastercard">Mastercard</label>
+			<input type="radio" name="payment_type" id="americanexpress" value="americanexpress" required="required">
+			<label for="americanexpress">American Express</label>
+		<p></p>
+			<label for="card_number">Card number:</label>
+			<input type="text" name="card_number" id="card_number">
+		<p></p>
+			<img id="card_number_image" src="x" alt=" ">
+		<p></p>
+			<label>Expiry date:</label>
+			<input type="text" name="expiry_month" id="expiry_month" required> /
+			<input type="text" name="expiry_year" id="expiry_year" required>
+		<p></p>
+			<label for="cardholder_name">Name on card: </label>
+			<input type="text" name="cardholder_name" id="cardholder_name">
+		<p></p>
+			<label for="cvv_no">CVV number:</label>
+			<input type="text" name="cvv_no" id="cvv_no">
+		<p></p>
+			<img id="cvv_number_image" src="x" alt=" ">
+		</fieldset>
+		<p></p>
+		<fieldset>
+			<legend>Validation</legend>
+			<input type="checkbox" name="debug" class="debug" id="debug">
+			<label for="debug" class="debug">JavaScript validation</label>
+		</fieldset>
+
+		<input type="submit" value="Check Out" />
+		<button type="button" id="cancelButton">Cancel Order</button>
+	</form>
+
+	<?php 
+		include 'includes/footer.inc';
+	?>
+</body>
+</html>

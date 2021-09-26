@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="description" content="Enquiry Details Confirmation" />
+	<meta name="keywords" content="Fitness Club, Gymnastic, Swimming, Yoga, Description, Enquiry form confirmation" />
+	<meta name="author" content="Sharmik" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<title>Enquiry Confirmation | Stay Fit 24-hour Fitness Club</title>
+	<link href="styles/style.css" rel="stylesheet" />
+	<script src="scripts/part2.js"></script>
+</head>
+
+<body>
+	<header>
+		<h1><a href="index.html"><img src="images/fitness_logo.png" alt="Stay Fit Logo"></img></a> Stay Fit <em>24-hour Fitness Club</em></h1>
+		<h5>COS60004 - Creating Web Applications</h5><hr />
+	</header>
+
+	<form id="payment" method="post" novalidate="novalidate" action="http://mercury.swin.edu.au/it000000/formtest.php">
+		
+		<input type="hidden" name="first_name" id="first_name" />
+		<input type="hidden" name="last_name" id="last_name" />
+		<input type="hidden" name="email_id" id="email_id" />
+		<input type="hidden" name="street_name" id="street_name" />
+		<input type="hidden" name="suburb" id="suburb" />
+		<input type="hidden" name="state" id="state" />
+		<input type="hidden" name="postcode" id="postcode" />
+		<input type="hidden" name="b_street_name" id="b_street_name" />
+		<input type="hidden" name="b_suburb" id="b_suburb" />
+		<input type="hidden" name="b_state" id="b_state" />
+		<input type="hidden" name="b_postcode" id="b_postcode" />		
+		<input type="hidden" name="phone_number" id="phone_number" />
+		<input type="hidden" name="preferred_contact" id="preferred_contact" />
+		<input type="hidden" name="category" id="category" />
+		<input type="hidden" name="product_features" id="product_features" />
+		<input type="hidden" name="member_count" id="member_count" />
+
+		<fieldset>
+			<legend>Your Details</legend>
+			<p>Your Name: <strong><span id="confirm_name"></span></strong></p>
+			<p>Address: <strong><span id="confirm_address"></span></strong></p>
+			<p>Billing Address: <strong><span id="confirm_b_address"></span></strong></p>
+			<p>Phone Number: <strong><span id="confirm_phone_number"></span></strong></p>
+			<p>Email ID: <strong><span id="confirm_email_id"></span></strong></p>			
+			<p>Preferred Contact Type: <strong><span id="confirm_preferred_contact"></span></strong></p>
+		</fieldset>
+		<p></p>
+		<fieldset>
+			<legend>Product Details</legend>
+			<p>Category: <strong><span id="confirm_category"></span></strong></p>
+			<p>Feature: <strong><span id="confirm_feature"></span></strong></p>
+			<p>Total Members: <strong><span id="confirm_member_count"></span></strong></p>
+			<p>Total Cost: $ <strong><span id="confirm_cost"></span></strong>  per hour</p>
+		</fieldset>
+		<p></p>
+		<fieldset>
+			<legend>Payment details</legend>
+			<input type="radio" name="payment_type" id="visa" value="visa" required="required"></input>
+			<label for="visa">Visa</label>
+			<input type="radio" name="payment_type" id="mastercard" value="mastercard" required="required"></input>
+			<label for="mastercard">Mastercard</label>
+			<input type="radio" name="payment_type" id="americanexpress" value="americanexpress" required="required"></input>
+			<label for="americanexpress">American Express</label>
+		<p></p>
+			<label for="card_number">Card number:</label>
+			<input type="text" name="card_number" id="card_number"></input>
+		<p></p>
+			<img id="card_number_image" src="x" alt=" "></img>
+		<p></p>
+			<label>Expiry date:</label>
+			<input type="text" name="expiry_month" id="expiry_month" required="required"></input> /
+			<input type="text" name="expiry_year" id="expiry_year" required="required"></input>
+		<p></p>
+			<label for="cardholder_name">Name on card: </label>
+			<input type="text" name="cardholder_name" id="cardholder_name"></input>
+		<p></p>
+			<label for="cvv_no">CVV number:</label>
+			<input type="text" name="cvv_no" id="cvv_no"></input>
+		<p></p>
+			<img id="cvv_number_image" src="x" alt=" "></img>
+		</fieldset>
+
+		<input type="submit" value="Check Out" />
+		<button type="button" id="cancelButton">Cancel Order</button>
+	</form>
+</body>
+</html>

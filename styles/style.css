@@ -1,0 +1,391 @@
+/*
+filename: Sharmik
+author: Sharmik
+created: 23rd Aug 2018
+last modified: 28rd Aug 2018
+description: index.html
+*/
+
+body{						/*font, background for all pages*/
+	font-family: calabri, sans-serif;
+	background-color: #F5F5F5;
+	/*display: flex;*/    		/* the body will display like a fexible box */
+    /*flex-direction: column*/; /* the content in the body will place next to each other in a column */
+}
+
+/*html{						<!-- wallpaper for entire website-->
+	position: relative;
+}
+
+html:after {
+    content : "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("images/wallpaper.jpg");
+    background-attachment: fixed;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: flex;
+    width: 100%;
+    height: 100%;
+    opacity : 0.2;
+    z-index: -1;
+}*/
+
+header
+{
+	position: relative;
+}
+
+header:after
+{
+    content : "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("images/header_wallpaper.jpg");
+    background-attachment: scroll;
+    background-repeat: no-repeat;
+    background-position:right top;
+    background-size: 100%;
+    width: 100%;
+    height: 100%;
+    opacity : 0.75;
+    z-index: -1;
+}
+
+h5
+{
+	text-align: right;
+}
+
+header h1, header h1 img	/*all header */
+{
+	float: left;
+	margin: auto;
+}
+
+header h1 img				/*Stay fit logo resized for all pages*/
+{
+	width: 8%;
+	height: 8%;
+}
+
+header h5					/*Course code for all pages*/
+{
+	padding: 1%;
+	margin-bottom: 1%;
+}
+
+header						/*header of all pages*/
+{
+	color: #FFF;
+}
+
+
+footer						/*footer of all pages*/
+{
+	font-size: small;
+	text-align: center;
+	clear: both;
+	width: 100%;
+}
+
+h1							/*h1 of all pages, Different font family for fitness center name*/
+{
+	font-family: "Comic Sans MS", cursive, sans-serif;
+	font-variant: small-caps;
+}
+
+h1 em						/*emphasis text of all paegs, unique for fitness center name*/
+{	
+	font-size: 1.5vw;
+}
+
+div img						/*images on index pages*/
+{	
+	width: 90%;
+}
+
+.Fitness					/*images on index pages*/
+{	
+	display: inline-block;
+	width: 30%;
+	text-align: center;
+}
+
+#recommendation, #recommendation th, #recommendation td		/*recommendation table boarders*/
+{
+	border: 1px solid darkblue;
+}
+
+#recommendation thead		/*background color and font size for table head*/
+{
+	background-color: blue;
+	font-size: 1.25em;
+}
+
+#recommendation td			/*text format and background for body content*/
+{
+	text-align: justify;
+	padding: 0.5em 1em 0.5em 0.5em;
+	/*opacity: 0.5;*/
+	color: black;
+}
+
+.product_details			/*keep all product description floating on left side*/
+{
+	float: left;
+	margin: auto;
+	width: 75%;
+}
+
+h3
+{
+	text-decoration: underline;
+}
+
+aside						/*all images float on right side*/
+{
+	float: right;
+	width: 25%;
+}
+
+#gymnastics_img			/*width for 1st image*/
+{	
+	width: 90%;
+}
+
+#gymnastics_img:hover		/*highlight image when cursor moved on image*/
+{
+	border: 1px solid darkgray;
+	border-radius: 5px;
+	box-shadow: 5px 5px 2.5px #ccc;
+}
+
+#swimming_img				/*width for 2nd image*/
+{
+	width: 90%;
+}
+
+#swimming_img:hover			/*highlight image when cursor moved on image*/
+{
+	border: 1px solid darkgray;
+	border-radius: 5px;
+	box-shadow: 5px 5px 2.5px #ccc;
+}
+
+#yoga_img					/*width for 3rd image*/
+{
+	width: 100%;
+	padding-top: 5%
+}
+
+#yoga_img:hover			/*highlight image when cursor moved on image*/
+{
+	border: 1px solid darkgray;
+	border-radius: 5px;
+	box-shadow: 5px 5px 2.5px #ccc;
+}
+
+#name						/*name center aligned, bold and doubled font size*/
+{	
+	text-align: center;
+	font-size: 200%;
+	font-weight: bold;
+}
+
+#student_no				/*Student number aliged to right side and arial font family*/
+{
+	text-align: right;
+	font-family: Arial, sans-serif;
+}
+
+#course
+{
+	color: rgb(0, 128, 0);
+}
+
+#timetable, #timetable th, #timetable td	/*Table borders*/
+{
+	border: 1px solid black;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+thead						/*Background color for table head*/
+{
+	background-color: #A9A9A9;
+}
+
+table caption
+{
+	vertical-align: bottom;
+}
+
+.DCS						/*Background color for unit*/
+{
+	background-color: #FF99CC;
+}
+
+.SPM						/*Background color for unit*/
+{
+	background-color: #CCCC99;
+}
+
+.OOP						/*Background color for unit*/
+{
+	background-color: #CCCCFF;
+}
+
+.CWA						/*Background color for unit*/
+{
+	background-color: #00CCCC;
+}
+
+.weekdays					/*constant width for columns in time table*/
+{
+	width: 20%;
+}
+
+td							/*constant height for all rows in table body*/
+{	
+	height: 4em;
+}
+
+table caption				/*table name is aligned center at bottom*/
+{
+	text-align: center;
+	caption-side: bottom;
+	padding-bottom: 2%;
+	padding-top: 1%;
+}
+
+dl							/*line spacing between dl tag*/
+{
+	line-height: 2em;
+}
+
+dd							/*line spacing between dd tag*/
+{
+	line-height: 1em;
+}
+
+#personal_details, #timetable	/*keep table and personal detials floating on left*/
+{
+	float: left;
+}
+
+#personal_details			/*width for personal details*/
+{
+	width: 70%;
+}
+
+figure						/*keep figure tag on right side*/
+{
+	float: right;
+	width: 20%
+}
+
+#profile_img				/*image width*/
+{
+	width: 100%;
+	border-style: double;
+}
+
+figcaption					/*figure caption aligned center*/
+{
+	text-align: center;
+}
+
+code
+{
+	white-space: pre-line;
+}
+
+label
+{
+    width: 10%;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.billing_add, .member_count
+{
+	display: inline;
+}
+
+input[type=text], input[type=email], input[type=textarea], #state
+{
+    width: 15%;
+    display: inline-block;
+    border: 1px solid lightgray;
+    box-sizing: border-box;
+}
+
+#no_of_members
+{
+    width: 3%;
+}
+
+input[type=submit], input[type=reset]
+{
+	margin: 8px 0px;
+}
+
+#card_number, #cardholder_name, #card_number_image, #cvv_number_image
+{
+	border-radius: 5px;
+}
+
+#expiry_month, #expiry_year, #cvv_no
+{
+	width: 3%;
+	border-radius: 5px;
+}
+
+#card_number_image, #cvv_number_image
+{
+	width: 15%;
+}
+
+@keyframes example 
+{
+    0%   {background-color: red;}
+    25%  {background-color: yellow;}
+    50%  {background-color: blue;}
+    100% {background-color: green;}
+    0%   {color: green;}
+    25%  {color: blue;}
+    50%  {color: yellow;}
+    100% {color: red;}
+}
+
+/* The element to apply the animation to */
+header 
+{
+    background-color: red;
+    color: red;
+    animation-name: example;
+    animation-duration: 25s;
+    animation-iteration-count: infinite;
+}
+
+@media screen and (max-width: 1200px) 		/*responsive website setting for tablet*/
+{
+    .Fitness 
+    {
+        width: 47%;
+    }
+}
+
+@media screen and (max-width: 600px) 		/*responsive website setting for mobile devices*/
+{
+    .Fitness 
+    {
+        width: 95%;
+	}
+}

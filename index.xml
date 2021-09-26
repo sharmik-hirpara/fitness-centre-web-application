@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<title>Home | Stay Fit 24-hour Fitness Club</title>
+	<link href="styles/style.css" rel="stylesheet" />
+	<meta charset="utf-8" />
+	<meta name="description" content="Index" />
+	<meta name="keywords" content="Index, Fitness Club, Gymnastic, Swimming, Yoga" />
+	<meta name="author" content="Sharmik" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+</head>
+
+<body>
+	<header>
+		<h1><a href="index.html"><img src="images/fitness_logo.png" alt="Stay Fit Logo"></img></a> Stay Fit <em>24-hour Fitness Club</em></h1>
+		<h5>COS60004 - Creating Web Applications</h5><hr />
+	</header>
+
+	<nav><h4>
+		<a href="index.html">Home</a> |
+		<a href="product.html">Description</a> |
+		<a href="enquire.html">Enquire</a> |
+		<a href="about.html">About</a> |
+		<a href="enhancement.html">Enhancement</a>
+	</h4></nav>
+
+	<h1>Stay Fit <em>24-hour Fitness Club</em></h1>
+	<p>WELCOME to our BRAND NEW CLUB!</p>
+	<p> </p>
+	<p class="p2">We are Over the moon to be a part of such a beautiful and Family Friendly community.</p>
+	<p class="p2">Our focus is to get our community active &amp; healthy in a fun and non-intimidating environment so that individuals can become the BEST Version of themselves.</p>	
+	<div class="Fitness" id="Gymnastics">
+		<img src="images/Fitness.png" alt="Gymnastics" title="Gymnastics file size-312KB"></img>
+		<a href="product.html#gymnastics">Gymnastic</a>
+	</div>
+	<div class="Fitness" id="Swimming">
+		<img src="images/Swimming.png" alt="Swimming" title="Swimming file size-79.9KB"></img>
+		<a href="product.html#swimming">Swimming</a>
+	</div>
+	<div class="Fitness" id="Yoga">
+		<img src="images/Yoga.png" alt="Yoga" title="Yoga file size-119KB"></img>
+		<a href="product.html#yoga">Yoga</a>
+	</div><br /><br />
+
+	<footer><hr />
+		&#169; <a href="http://www.swinburne.edu.au"><u>Swinburne University of Technology</u>.</a>&#160;&#160;&#160;&#160; Mark up by: <a href="mailto:101980352@swin.edu.au"><u>Sharmik</u></a>
+	</footer>
+</body>
+</html>
