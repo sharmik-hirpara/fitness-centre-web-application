@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	print_r($_SESSION);
+	session_destroy();
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
 	<meta name="keywords" content="Fitness Club, Gymnastic, Swimming, Yoga, Description, Enquiry form" />
 	<meta name="author" content="Sharmik" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Fix it | Stay Fit 24-hour Fitness Club</title>
+	<title>Membership form | Stay Fit 24-hour Fitness Club</title>
 	<link href="styles/style.css" rel="stylesheet" />
 	<script src="scripts/part2.js"></script>
 </head>
@@ -24,10 +24,10 @@
 		include 'includes/menu.inc';
 	?>
 
-	<h2 class="form_name">Fix Enquire form</h2>
+	<h2 class="form_name">Membership form</h2>
 
-	<form class="forms" id="fix_enquire_form" novalidate="novalidate" method="post" action="process_order.php">
-		<fieldset class="new_fieldset">	
+	<form class="forms" id="enquire_form" novalidate="novalidate" method="post" action="payment.php">
+		<fieldset class="new_fieldset">
 			<legend>Personal datails</legend>
 			<div class="input_field">
 				<label for="first_name">First name </label>
@@ -64,7 +64,7 @@
 				<legend>Recidence details</legend>
 				<div class="input_field">
 					<label for="street_name">Street name </label>
-					<input type="text" name="street_name" id="street_name" maxlength="40" size="40" pattern="[a-zA-Z ]{1,40}" required="required">
+					<input type="text" name="street_name" id="street_name" maxlength="40" size="40" pattern="[a-zA-Z0-9 ]{1,40}" required="required">
 				</div>
 				<div class="input_field">
 					<label for="suburb">Suburb </label>
@@ -121,48 +121,50 @@
 				</div>				
 			</fieldset>
 		</fieldset>
-
 		<fieldset class="new_fieldset">
-			<legend>Payment details</legend>
-			<div class="radio_button_input_field">
-				<div class="radio_button">
-					<input type="radio" name="payment_type" id="visa" value="visa" required="required">
-					<label for="visa">Visa</label>
+			<legend>Product enquiry details</legend>
+			<div class="input_field">
+				<label for="category">Category </label>
+				<select name="category" id="category" required>
+					<option value="" id="default">Select category</option>
+					<option value="gymnastics" id="gymnastics">Gymnastics</option>
+					<option value="swimming" id="swimming">Swimming</option>
+					<option value="yoga" id="yoga">Yoga</option>
+				</select>
+			</div>
+			<div class="labels">
+				<label >Product features </label>
+			</div>
+			<div class="labels">
+				<div class="input_field">
+					<input type="radio" name="product_features[]" id="group_activity" value="group_activity" required="required">
+					<label for="group_activity">Group activity
+						<span hidden="hidden" class="category gymnastics">($5 per hour)</span>
+						<span hidden="hidden" class="category swimming">($6 per hour)</span>
+						<span hidden="hidden" class="category yoga">($7 per hour)</span>
+					</label>
 				</div>
-				<div class="radio_button">
-					<input type="radio" name="payment_type" id="mastercard" value="mastercard" required="required">
-					<label for="mastercard">Mastercard</label>
+				<div class="input_field">
+					<input type="radio" name="product_features[]" id="personal_training" value="personal_training" required="required">	
+					<label for="personal_training">Personal training</label>
+						<span hidden="hidden" class="category gymnastics">($10 per hour)</span>
+						<span hidden="hidden" class="category swimming">($12 per hour)</span>
+						<span hidden="hidden" class="category yoga">($15 per hour)</span>
 				</div>
-				<div class="radio_button">
-					<input type="radio" name="payment_type" id="americanexpress" value="americanexpress" required="required">
-					<label for="americanexpress">American Express</label>
-				</div>
+			</div>
+			<div class="input_field labels">	
+				<label for="session_timings">Session timings: </label>
+				<span hidden="hidden" class="category gymnastics">Everyday</span>
+				<span hidden="hidden" class="category swimming">Monday, Wednesday, Friday, Saturday, Sunday</span>
+				<span hidden="hidden" class="category yoga">Everyday early morning</span>
 			</div>
 			<div class="input_field">
-				<label for="card_number">Card number:</label>
-				<input type="text" name="card_number" id="card_number">
-			</div>
-			<div class="card_samples">
-				<img class="card_sample" id="card_number_image" src="images/dummy_front.png" alt="card front image ">
+				<label for="no_of_members" class="member_count">Total number of member(s) to join fitness club </label>
+				<input type="text" name="no_of_members" id="no_of_members" class="member_count" maxlength="2" size="4" pattern="\d{2}" required="required">
 			</div>
 			<div class="input_field">
-				<label>Expiry date:</label>
-				<div class="date_field">
-					<input type="text" name="expiry_month" id="expiry_month" required>
-					<span class="date_seperator">/</span>
-					<input type="text" name="expiry_year" id="expiry_year" required>
-				</div>
-			</div>
-			<div class="input_field">
-				<label for="cardholder_name">Name on card: </label>
-				<input type="text" name="cardholder_name" id="cardholder_name">
-			</div>	
-			<div class="input_field">
-				<label for="cvv_no">CVV number:</label>
-				<input type="text" name="cvv_no" id="cvv_no">
-			</div>
-			<div class="card_samples">	
-				<img class="card_sample" id="cvv_number_image" src="images/dummy_cvv.png" alt="card back image">
+				<label for="comments">Comments </label>
+				<input type="textarea" id="comments" name="comments" rows="4" cols="40" placeholder="Enter your comments here..."></input>
 			</div>
 		</fieldset>
 		<fieldset class="new_fieldset">
@@ -170,12 +172,10 @@
 			<input type="checkbox" name="debug" class="debug" id="debug">
 			<label for="debug" class="debug">JavaScript validation</label>
 		</fieldset>
-
 		<div class="buttons">
-				<input type="submit" value="Check Out" />
-				<input type="button" id="cancelButton" value="Cancel" />
+			<input type="submit" value="Pay now"/>
+			<input type="reset" value="Reset fields">
 		</div>
-
 	</form>
 
 	<?php 
