@@ -1,4 +1,14 @@
-	<header>
-		<h1><a href="index.html"><img src="images/fitness_logo.png" alt="Stay Fit Logo"></a> Stay Fit <em>24-hour Fitness Club</em></h1>
-		<h5>COS60004 - Creating Web Applications</h5><hr>
-	</header>
+<header>
+	<div class="website_header">
+		<div class="company_logo">
+			<a href="index.php">
+				<img src="images/fitness_logo.png" alt="Stay Fit Logo">
+			</a>
+		</div>
+		<div class="company_name">
+			<h1>	
+				Stay Fit <em>24-hour Fitness Club</em>
+			</h1>
+		</div>
+	</div>
+</header>

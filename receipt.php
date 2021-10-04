@@ -13,29 +13,22 @@
 </head>
 
 <body>
-<?php
-	include "includes/header.inc";
+	<?php
+		include "includes/header.inc";
+		require_once("settings.php");
 
-	require_once("settings.php");
 		$conn = @mysqli_connect($host, $user, $pwd, $sql_db);
 
 		if(!$conn)
-		{
 			echo "<p>Datebase connection failure</p>";
-		}
-		else
-		{
+		else {
 			$sql_table = "orders";
 			$sqlString = "select * FROM orders ORDER BY order_id DESC LIMIT 1";
 			$result = mysqli_query($conn,  $sqlString);
 			if(!$result)
-			{
 				echo "<p class=\"wrong\">Something is wrong with ", $sqlString, "</p>";
-			}
-			else
-			{
-				while($row = mysqli_fetch_assoc($result))
-				{
+			else {
+				while($row = mysqli_fetch_assoc($result)){
 					$orderID = $row['order_id'];
 					$first_name = $row['first_name'];
 					$last_name = $row['last_name'];
@@ -68,56 +61,134 @@
 			}
 		}
 		mysqli_close($conn);
-?>
+	?>
 
-	<form id="receipt" method="post" novalidate="novalidate" action="index.php">
-		<fieldset>
+	<form class="forms" id="receipt" method="post" novalidate="novalidate" action="index.php">
+		<fieldset class="new_fieldset">
 			<legend>Order details</legend>
-			<h2>Order ID: <?php echo $orderID; ?></h2>
-			<h2>Order Status: <?php echo $orderStatus; ?></h2>
+			<div class="order_details">
+				Order ID: 
+				<span class="font_bold">
+					<?php echo $orderID; ?>
+				</span>
+			</div>
+			<div class="order_details">
+				Order Status: 
+				<span class="font_bold">
+					<?php echo $orderStatus; ?>
+				</span>
+			</div>
 		</fieldset>
-	<p></p>
-		<fieldset>
+		<fieldset class="new_fieldset">
 			<legend>Your Details</legend>
-			<p>Your Name: <strong> <?php echo $first_name . " " . $last_name ?></strong></p>
-			<p>Address: <strong><?php echo $street_name . ", " . $suburb . ", " . $state . ", " . $postcode . ", Australia." ?></strong></p>
-			<p>Billing Address: <strong>
-				<?php if($b_street_name != "Not applicable")
-						{
+			<div class="output_field">
+				Your Name: 
+				<span class="font_bold">
+					<?php echo $first_name . " " . $last_name ?>
+				</span>
+			</div>
+			<div class="output_field">
+				Address: 
+				<span class="font_bold">
+					<?php echo $street_name . ", " . $suburb . ", " . $state . ", " . $postcode . ", Australia." ?>
+				</span>
+			</div>
+			<div class="output_field">
+				Billing Address: 
+				<span class="font_bold">
+					<?php 
+						if($b_street_name != "Not applicable")
 							echo $b_street_name . ", " . $b_suburb . ", " . $b_state . ", " . $b_postcode . ", Australia.";
-						}
 						else
-						{
 							echo $b_street_name;
-						}
-						 ?>
-						 	
-						 </strong></p>
-			<p>Phone Number: <strong><?php echo $phone_number;
-				?></strong></p>
-			<p>Email ID: <strong><?php echo $email_id; ?></strong></p>			
-			<p>Preferred Contact Type: <strong><?php echo $preferred_contact; ?></strong></p>
+					?>
+				</span>
+			</div>
+			<div class="output_field">
+				Phone Number: 
+				<span class="font_bold">
+					<?php echo $phone_number;?>
+				</span>
+				</div>
+			<div class="output_field">
+				Email ID: 
+				<span class="font_bold">
+					<?php echo $email_id; ?>
+				</span>
+		</div>			
+			<div class="output_field">
+				Preferred Contact Type: 
+				<span class="font_bold">
+					<?php echo $preferred_contact; ?>
+				</span>
+		</div>
 		</fieldset>
-		<p></p>
-		<fieldset>
+		<fieldset class="new_fieldset">
 			<legend>Product Details</legend>
-			<p>Category: <strong><?php echo $product; ?></strong></p>
-			<p>Feature: <strong><?php echo $feature; ?></strong></p>
-			<p>Total Members: <strong><?php echo $members; ?></strong></p>
-			<p>Total Cost: $ <strong><?php echo $order_cost; ?></strong>  per hour</p>
+			<div class="output_field">
+				Category: 
+				<span class="font_bold">
+					<?php echo $product; ?>
+				</span>
+			</div>
+			<div class="output_field">
+				Feature: 
+				<span class="font_bold">
+					<?php echo $feature; ?>
+				</span>
+			</div>
+			<div class="output_field">
+				Total Members: 
+				<span class="font_bold">
+					<?php echo $members; ?>
+				</span>
+			</div>
+			<div class="output_field">
+				Total Cost: $ 
+				<span class="font_bold">
+					<?php echo $order_cost; ?>
+				</span>
+			  	per hour
+			</div>
 		</fieldset>
-		<p></p>
-		<fieldset>
+		<fieldset class="new_fieldset">
 			<legend>Payment details</legend>
-			<p>Card type: <strong><?php echo $payment_type; ?></strong></p>
-			<p>Card number: <strong><?php echo $card_number; ?></strong></p>
-			<p>Expiry date: <strong><?php echo $expiry_month . "/" . $expiry_year; ?></strong></p>
-			<p>Name on card: <strong><?php echo $cardholder_name; ?></strong></p>
-			<p>CVV code: <strong><?php echo $cvv_no; ?></strong></p>
+			<div class="output_field">
+				Card type: 
+				<span class="font_bold">
+					<?php echo $payment_type; ?>
+				</span>
+			</div>
+			<div class="output_field">
+				Card number: 
+				<span class="font_bold">
+					<?php echo $card_number; ?>
+				</span>
+			</div>
+			<div class="output_field">
+				Expiry date: 
+				<span class="font_bold">
+					<?php echo $expiry_month . "/" . $expiry_year; ?>
+				</span>
+			</div>
+			<div class="output_field">
+				Name on card: 
+				<span class="font_bold">
+					<?php echo $cardholder_name; ?>
+				</span>
+			</div>
+			<div class="output_field">
+				CVV code: 
+				<span class="font_bold">
+					<?php echo $cvv_no; ?>
+				</span>
+			</div>
 		</fieldset>
 
-		<input type="submit" value="Print receipt" />
-		<!-- <button type="button" id="backButton">Back to home page</button> -->
+		<div class="buttons">
+			<input type="submit" value="Print receipt" />
+			<input type="button" id="backButton" value="Return to Home Page" />
+		</div>
 	</form>
 
 	<?php 
