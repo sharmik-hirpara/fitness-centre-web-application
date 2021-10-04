@@ -362,7 +362,6 @@ function debugMode(e) {
 function init() {
 	var enquire_form = document.getElementById("enquire_form");
 	var payment = document.getElementById("payment");
-	var manager = document.getElementById("manager");
 	var fix_order = document.getElementById("fix_enquire_form");
 	var receipt = document.getElementById("receipt");
 	
