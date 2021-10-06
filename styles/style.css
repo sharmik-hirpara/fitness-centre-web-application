@@ -291,12 +291,11 @@ input[type=submit], input[type=reset], input[type=button] {
 
 /*responsive website setting for mobile devices*/
 @media screen and (max-width: 600px) {
-    /* .Fitness {
+
+	.website_header {
 		flex-direction: column;
-		clear: both;
-        width: 95%;
-		justify-content: center;
-	} */
+		text-align: center;
+	}
 
 	.benifits {
 		width: 100%;

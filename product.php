@@ -69,7 +69,7 @@
 				</div>
 				<div class="product_details_row_2"> 
 					<div class="product_images">
-						<img src="images/gymnastic2.png" title="Gymnastics File size: 4.30KB" alt="Gymnastics" id="gymnastics_img">
+						<img src="images/gymnastic1.png" title="Gymnastics File size: 4.30KB" alt="Gymnastics" id="gymnastics_img">
 					</div>
 					<div class="benifits">
 						<h4 class="underline">Benefits of Gymnastics:</h4>
@@ -128,7 +128,7 @@
 				</div>
 				<div class="product_details_row_2">
 					<div class="product_images">
-						<img src="images/yoga2.png" title="Yoga File size: 4.09KB" alt="Yoga" id="yoga_img">
+						<img src="images/yoga1.png" title="Yoga File size: 4.09KB" alt="Yoga" id="yoga_img">
 					</div>
 					<div class="benifits">
 						<h4 class="underline">Benefits of Yoga:</h4>
